@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "pacifico";
+  src: url(/fonts/Pacifico-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "nunito";
+  src: url(/public/fonts/Nunito-VariableFont_wght.ttf) format("truetype");
+  font-weight: 400 600 700;
+}
+:root {
+  --very-light-gray: #ebeaea;
+  --dark-gray: #636363;
+  --light-gray: #d9d9d9;
+  --dark-blue: #213bc6;
+  --red-accent: #fb1351;
+  --cyan: #37c6f3;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+/*=============start styling==========*/
+body {
+  font-family: "nunito";
+  font-weight: 400;
+}
+/*=============sign in/sign up styling========*/
+.sign-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  background: url(/public/images/sign-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--very-light-gray);
+  padding: 1rem;
+}
+.sign-container form,
+.sign-container form .inputs {
+  display: flex;
+  flex-direction: column;
+}
+.sign-container form {
+  width: 25rem;
+  gap: 2rem;
+}
+.sign-container form h1 {
+  align-self: center;
+  font-family: "pacifico";
+  font-size: 4rem;
+}
+.sign-container form .inputs{
+  gap: 0.7rem;
+}
+.sign-container form .inputs input{
+  height: 2.5rem;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    background-color: var(--light-gray);
+    font-family: 'pacifico';
+    font-size: 1.2rem;
+    border: 0;
+    outline: 0;
+}
+.sign-container form button{
+    height: 2.7rem;
+    border-radius: 1rem;
+    background-color: var(--light-gray);
+    font-family: 'pacifico';
+    font-size: 1.2rem;
+    border: 0;
+}
+.sign-container form button:hover{
+  background-color: aqua;
+  cursor: pointer;
+}
+.error{
+  font-size: 12px;
+  font-style: italic;
+  color: var(--red-accent);
+  display: none;
+}
+.option{
+  font-size: 13px;
+    color: var(--dark-gray);
+    text-transform: capitalize;
+}
+.link{
+  color: var(--dark-blue);
+    cursor: pointer;
+}
