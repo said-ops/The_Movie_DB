@@ -24,7 +24,7 @@ function NavBar() {
             onClick={handleClick}
             >
               <img 
-              src="/images/icon-hamburger.svg" 
+              src={`/images/${isOpen?'icon-close':'icon-hamburger'}.svg`} 
               alt="menu"
                />
             </div>
