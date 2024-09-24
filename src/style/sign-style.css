@@ -2,7 +2,7 @@
 .sign-container {
     min-width: 100vw;
     min-height: 100vh;
-    background: url(/public/images/sign-bg.jpg);
+    background: url(/images/sign-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;

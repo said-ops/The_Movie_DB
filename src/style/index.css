@@ -4,7 +4,7 @@
 }
 @font-face {
   font-family: "nunito";
-  src: url(/public/fonts/Nunito-VariableFont_wght.ttf) format("truetype");
+  src: url(/fonts/Nunito-VariableFont_wght.ttf) format("truetype");
   font-weight: 400 600 700;
 }
 :root {
