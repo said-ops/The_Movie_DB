@@ -11,6 +11,9 @@ function NavBar() {
             <li>Watchlist</li>
             <li>Sign</li>
             </ul>
+            <div className='menu-icon'>
+              <img src="/images/icon-hamburger.svg" alt="menu" />
+            </div>
         </nav>
     </>
   )

@@ -92,3 +92,48 @@ body {
   color: var(--dark-blue);
     cursor: pointer;
 }
+/*==============nav bar styling===========*/
+nav{
+  display: flex;
+  justify-content: space-between;
+  font-family: 'pacifico';
+  align-items: center;
+}
+.nav-links{
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: var(--light-gray);
+}
+.nav-links{
+  color: black;
+}
+.nav-links li:hover{
+  color: var(--dark-blue);
+  cursor: pointer;
+}
+nav h1{
+  font-family: 'pacifico';
+  color: black;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.menu-icon{
+  display: none;
+}
+@media screen and (max-width:650px) {
+  .nav-links{
+    position: absolute;
+    right: 0;
+    top: 3rem;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    border-radius: 1rem;
+    z-index: 2;
+    display: none;
+  }
+  .menu-icon{
+    display: unset;
+  }
+}
