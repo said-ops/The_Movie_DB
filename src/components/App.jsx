@@ -1,8 +1,11 @@
 import React from 'react'
+import SignIn from './SignIn'
 
 function App() {
   return (
-    <h1>The Movie DB</h1>
+    <>
+      <SignIn/>
+    </>
   )
 }
 

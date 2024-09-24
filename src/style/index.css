@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'pacifico';
+  src: url(/fonts/Pacifico-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'nunito';
+  src: url(/public/fonts/Nunito-VariableFont_wght.ttf) format('truetype');
+  font-weight: 400 600 700;
+}
+:root{
+  --very-light-gray:#EBEAEA;
+  --dark-gray:#636363;
+  --light-gray:#D9D9D9;
+  --dark-blue:#213BC6;
+  --red-accent:#FB1351;
+  --cyan:#37C6F3;
+}
+*,
+*::after,
+*::before{
+  box-sizing: border-box;
+}
+/*=============start styling==========*/
