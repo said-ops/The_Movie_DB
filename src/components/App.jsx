@@ -6,9 +6,9 @@ import NavBar from './NavBar'
 function App() {
   return (
     <>
-      {/* <SignUp/> */}
+      <SignUp/>
       {/* <SignIn/> */}
-      <NavBar/>
+      {/* <NavBar/> */}
     </>
   )
 }
