@@ -1,5 +1,4 @@
 import React from 'react'
-import '../style/sign-style.css'
 
 function SignUp() {
   return (
