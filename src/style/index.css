@@ -121,6 +121,14 @@ nav h1{
 .menu-icon{
   display: none;
 }
+.hide-menu{
+  display: none;
+}
+@media screen and (min-width:650px) {
+  .nav-links{
+    display: flex;
+  }
+}
 @media screen and (max-width:650px) {
   .nav-links{
     position: absolute;
@@ -131,7 +139,7 @@ nav h1{
     text-align: center;
     border-radius: 1rem;
     z-index: 2;
-    display: none;
+    
   }
   .menu-icon{
     display: unset;
