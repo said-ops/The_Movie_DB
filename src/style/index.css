@@ -133,7 +133,7 @@ nav h1{
   .nav-links{
     position: absolute;
     right: 0;
-    top: 3rem;
+    top: 4rem;
     flex-direction: column;
     width: 100%;
     text-align: center;
@@ -143,5 +143,80 @@ nav h1{
   }
   .menu-icon{
     display: unset;
+  }
+}
+/*============home page styling========*/
+.app-container{
+  display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 2rem;
+    background-color: var(--very-light-gray);
+}
+.home-container{
+  display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 1110px;
+    align-self: center;
+}
+.home-container h1{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.cards{
+  display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 2rem;
+    justify-content: center;
+    row-gap: 0.5rem;
+}
+.card img{
+  width: 177px;
+  height: 263px;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem;
+  width: 193px;
+  box-shadow: 1px 1px 13px 1px var(--dark-gray);
+  border-radius: 1rem;
+  transition: all 0.5s ease-in-out;
+}
+.card-body{
+  display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.movie-title{
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.desc{
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  font-weight: 200;
+}
+.genre{
+  color:var(--red-accent);
+  font-weight: 500;
+}
+.card:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+}
+@media screen and (max-width:550px) {
+  .card{
+    width: 250px;
+  }
+  .card img{
+    width: 100%;
   }
 }
