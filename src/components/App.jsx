@@ -9,7 +9,6 @@ function App() {
     <>
       {/* <SignUp/> */}
       {/* <SignIn/> */}
-      {/* <NavBar/> */}
       <HomePage/>
     </>
   )
