@@ -152,6 +152,7 @@ nav h1{
     gap: 4rem;
     padding: 2rem;
     background-color: var(--very-light-gray);
+    min-height: 100vh;
 }
 .home-container{
   display: flex;
