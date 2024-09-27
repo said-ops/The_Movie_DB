@@ -65,10 +65,63 @@ function MovieDetails() {
             ></iframe>
           </div>
         </div>
-        <h2>Cast</h2>
+        <h2 className="cast-h">Cast</h2>
         <div className="casts">
           <div className="cast">
-            <img src="/images/" alt="" />
+            <img src="/images/profile-pic.jpg" alt="cast" />
+            <div className="cast-info">
+              <span className="cast-name">Name</span>
+              <span className="cast-role">Role</span>
+            </div>
+          </div>
+          <div className="cast">
+            <img src="/images/profile-pic.jpg" alt="cast" />
+            <div className="cast-info">
+              <span className="cast-name">Name</span>
+              <span className="cast-role">Role</span>
+            </div>
+          </div>
+          <div className="cast ">
+            <img src="/images/profile-pic.jpg" alt="cast" />
+            <div className="cast-info">
+              <span className="cast-name">Name</span>
+              <span className="cast-role">Role</span>
+            </div>
+          </div>
+          <div className="cast">
+            <img src="/images/profile-pic.jpg" alt="cast" />
+            <div className="cast-info">
+              <span className="cast-name">Name</span>
+              <span className="cast-role">Role</span>
+            </div>
+          </div>
+          <div className="cast">
+            <img src="/images/profile-pic.jpg" alt="cast" />
+            <div className="cast-info">
+              <span className="cast-name">Name</span>
+              <span className="cast-role">Role</span>
+            </div>
+          </div>
+          <div className="cast">
+            <img src="/images/profile-pic.jpg" alt="cast" />
+            <div className="cast-info">
+              <span className="cast-name">Name</span>
+              <span className="cast-role">Role</span>
+            </div>
+          </div>
+          <div className="cast">
+            <img src="/images/profile-pic.jpg" alt="cast" />
+            <div className="cast-info">
+              <span className="cast-name">Name</span>
+              <span className="cast-role">Role</span>
+            </div>
+          </div>
+          <div className="cast">
+            <img src="/images/profile-pic.jpg" alt="cast" />
+            <div className="cast-info">
+              <span className="cast-name">Name</span>
+              <span className="cast-role">Role</span>
+            </div>
           </div>
         </div>
       </section>
