@@ -2,6 +2,14 @@ import React from "react";
 import NavBar from "./NavBar";
 
 function MovieDetails() {
+  const cast = [
+    { name: "Ryan Gosling", role: "Six", image: "/images/profile-pic.jpg" },
+    { name: "Chris Evans", role: "Lloyd Hansen", image: "/images/profile-pic.jpg" },
+    { name: "Ana de Armas", role: "Dani Miranda", image: "/images/profile-pic.jpg" },
+    { name: "Jessica Henwick", role: "Suzanne Brewer", image: "/images/profile-pic.jpg" },
+    { name: "Wagner Moura", role: "Laszlo Sosa", image: "/images/profile-pic.jpg" },
+    { name: "Billy Bob Thornton", role: "Donald Fitzroy", image: "/images/profile-pic.jpg" }
+  ];
   return (
     <>
       <section className="app-container">
