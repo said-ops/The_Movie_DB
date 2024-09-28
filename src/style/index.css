@@ -282,9 +282,14 @@ nav h1{
 }
 .summary{
   line-height: 1.5;
-    width: 75%;
+    /* width: 75%; */
     font-size: 17px;
     color: black;
+}
+.rates{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 .rate{
   display: flex;
@@ -333,7 +338,7 @@ nav h1{
     font-size: 17px;
     background-color: white;
 }
-@media screen and (max-width:910px) {
+@media screen and (max-width:940px) {
   .infos{
     flex-direction: column;
     row-gap: 1rem;
@@ -346,7 +351,7 @@ nav h1{
     height: 23rem;
   }
   .details{
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
   }
   .text{
@@ -360,9 +365,16 @@ nav h1{
     width: 100%;
   }
 }
-@media screen and (max-width:490px) {
+@media screen and (max-width:550px) {
   .bookmark p{
     display: none;
+  }
+  .bookmark{
+    margin-right: 0;
+  }
+  .details{
+    flex-direction: column;
+    align-items: center;
   }
   .bookmark{
     margin-right: 0;

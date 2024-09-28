@@ -59,6 +59,21 @@ function MovieDetails() {
                     <span className="base-rate">10</span>
                   </span>
                 </div>
+                <div className="rate">
+                  <span className="rate-text">Release Date</span>
+                  <span className="rate-metrics">2011-10-20
+                  </span>
+                </div>
+                <div className="rate">
+                  <span className="rate-text">Release Date</span>
+                  <span className="rate-metrics">2011-10-20
+                  </span>
+                </div>
+                <div className="rate">
+                  <span className="rate-text">Status</span>
+                  <span className="rate-metrics">Released
+                  </span>
+                </div>
               </div>
             </div>
           </div>
