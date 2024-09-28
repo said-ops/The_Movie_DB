@@ -74,7 +74,7 @@ body {
     border: 0;
 }
 .sign-container form button:hover{
-  background-color: aqua;
+  background-color: #FFD700;
   cursor: pointer;
 }
 .error{
@@ -101,20 +101,19 @@ nav{
 }
 .nav-links{
   display: flex;
-  gap: 1.5rem;
-  padding: 1rem;
-  background-color: var(--light-gray);
-}
-.nav-links{
-  color: black;
+    gap: 1.5rem;
+    padding: 1rem;
+    /* background-color: var(--cyan); */
+    background: linear-gradient(91deg, #8B4513, #ffd700);
+    color: #4B2D0D;
 }
 .nav-links li:hover{
-  color: var(--dark-blue);
+  color: #FFD700;
   cursor: pointer;
 }
 nav h1{
   font-family: 'pacifico';
-  color: black;
+  color: #4B2D0D;
   font-weight: bold;
   font-size: 2rem;
 }
@@ -151,8 +150,10 @@ nav h1{
     flex-direction: column;
     gap: 4rem;
     padding: 2rem;
-    background-color: var(--very-light-gray);
+    /* background-color: var(--very-light-gray); */
     min-height: 100vh;
+    background: linear-gradient(208deg, #FFD700, #8B4513);
+    color:#4B2D0D ;
 }
 .home-container{
   display: flex;
@@ -188,6 +189,8 @@ nav h1{
   box-shadow: 1px 1px 13px 1px var(--dark-gray);
   border-radius: 1rem;
   transition: all 0.5s ease-in-out;
+  background: linear-gradient(135deg, #FFF5CC, #D2691E);
+
 }
 .card-body{
   display: flex;
@@ -206,12 +209,15 @@ nav h1{
   font-weight: 200;
 }
 .genre{
-  color:var(--red-accent);
+  color:#FFD700;
   font-weight: 500;
 }
 .card:hover{
   transform: scale(1.05);
   cursor: pointer;
+}
+.bookmark,.genr{
+  background: linear-gradient(268deg, #FFD700, #8B4513);
 }
 @media screen and (max-width:550px) {
   .card{
@@ -236,7 +242,7 @@ nav h1{
     align-items: center;
     gap: 1rem;
     margin-right: 2rem;
-    background-color: var(--cyan);
+    /* background-color: var(--cyan); */
     padding: 0.5rem;
     border-radius: 1rem;
     cursor: pointer;
@@ -275,7 +281,7 @@ nav h1{
 }
 .genr{
   padding: 0.5rem;
-    background-color: white;
+  /* background-color: var(--cyan); */
     border: 1px solid var(--dark-gray);
     border-radius: 1rem;
     font-weight: 600;
@@ -284,7 +290,7 @@ nav h1{
   line-height: 1.5;
     /* width: 75%; */
     font-size: 17px;
-    color: black;
+    color: #4B2D0D;
 }
 .rates{
   display: flex;
@@ -336,7 +342,7 @@ nav h1{
     gap: 0.5rem;
     padding: 0.5rem;
     font-size: 17px;
-    background-color: white;
+    background: linear-gradient(180deg, #FFD700, #8B4513);
 }
 @media screen and (max-width:940px) {
   .infos{

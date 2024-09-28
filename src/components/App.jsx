@@ -10,9 +10,8 @@ function App() {
     <>
       {/* <SignUp/> */}
       {/* <SignIn/> */}
-      {/* <HomePage/> */}
-      <MovieDetails/>
-      {/* <Swiper/> */}
+      <HomePage/>
+      {/* <MovieDetails/> */}
     </>
   )
 }
