@@ -441,3 +441,8 @@ nav h1{
     color: var(--dark-gray);
     font-weight: 400;
 }
+.watchlist-h{
+  font-size: 1.5rem;
+  font-family: 'pacifico';
+  text-align: center;
+}
