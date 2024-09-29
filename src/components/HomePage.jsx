@@ -11,12 +11,11 @@ function HomePage() {
   const currentPage = usePopularStore((state) => state.currentPage);
   const setPage = usePopularStore((state) => state.setPage);
 
-
   useEffect(() => {
     fetchPopular(currentPage);
     console.log(movies);
     console.log(error);
-    console.log(currentPage)
+    console.log(currentPage);
   }, [currentPage]);
   return (
     <>
@@ -24,7 +23,7 @@ function HomePage() {
         <section className="app-container">
           <NavBar />
           <div className="home-container">
-            <h1>Latest Movies</h1>
+            <h1>Popular Movies</h1>
             <div className="cards">
               {/* movies cards goes here */}
               {movies.length > 0 &&
@@ -36,7 +35,9 @@ function HomePage() {
                         alt=""
                       />
                       <div className="card-body">
-                        <p className="movie-title">{movie.title.split(' ').slice(0,3).join(' ')+'...'}</p>
+                        <p className="movie-title">
+                          {movie.title.split(" ").slice(0, 3).join(" ") + "..."}
+                        </p>
                         <p className="desc">
                           <span className="duration">{movie.release_date}</span>
                           <span className="genre">
@@ -67,7 +68,6 @@ function HomePage() {
             </div>
           </div>
           <Pagination setPage={setPage} currentPage={currentPage} />
-
         </section>
       </>
     </>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function SignIn() {
   return (
@@ -15,7 +16,7 @@ function SignIn() {
             <span className="error">this field is required</span>
           </div>
           <button type="submit">Sign In</button>
-          <span className="option">You don’t have an account? , <span className="link">SignUp</span></span>
+          <span className="option">You don’t have an account? , <Link to='/Sign-Up'><span className="link">SignUp</span></Link></span>
         </form>
       </section>
     </>

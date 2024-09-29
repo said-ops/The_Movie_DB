@@ -1,21 +1,23 @@
 import React from 'react'
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
-import NavBar from './NavBar'
 import HomePage from './HomePage'
-import MovieDetails from './MovieDetails'
 import SearchPage from './SearchPage'
 import Watchlist from './Watchlist'
 
 function App() {
   return (
     <>
-      {/* <SignUp/> */}
-      {/* <SignIn/> */}
-      <HomePage/>
-      {/* <MovieDetails/> */}
-      {/* <SearchPage/> */}
-      {/* <Watchlist/> */}
+      <Router>
+        <Routes>
+          <Route path='/' element={<HomePage/>} />
+          <Route path='/Search' element={<SearchPage/>} />
+          <Route path='/Watchlist' element={<Watchlist/>} />
+          <Route path='/Sign-In' element={<SignIn/>} />
+          <Route path='/Sign-Up' element={<SignUp/>} />
+        </Routes>
+      </Router>
     </>
   )
 }

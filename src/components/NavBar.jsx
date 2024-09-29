@@ -1,4 +1,5 @@
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
+import { Link } from 'react-router-dom'
 
 function NavBar() {
 
@@ -14,10 +15,10 @@ function NavBar() {
         <nav>
             <h1>MovieDB</h1>
             <ul className={`nav-links  ${isOpen ? '' : 'hide-menu'}`}>
-              <li>Home</li>
-              <li>Find Movie</li>
-              <li>Watchlist</li>
-              <li>Sign</li>
+              <Link to='/'><li>Home</li></Link>
+              <Link to='/Search'><li>Find Movie</li></Link>
+              <Link to='/Watchlist'><li>Watchlist</li></Link>
+              <Link to='/Sign-In'><li>Sign</li></Link>
             </ul>
             <div  
             className='menu-icon'
