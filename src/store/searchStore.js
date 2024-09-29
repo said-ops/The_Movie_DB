@@ -20,7 +20,7 @@ const useSearchStore = create(set=>({
     //fetch movies by search term
     fetchByTerm :async (term,page)=>{
         try {
-            set({loading:true,error:''})
+            set({loading:true,error:'',movies:[]})
             const res = await fetch(`${termUrl}&query=${term}&page=${page}`)
             const data = await res.json()
             set({loading:false,movies:data.results,maxPages:parseInt(data.total_pages)})
@@ -35,8 +35,9 @@ const useSearchStore = create(set=>({
     setPage: (page) => {
         set((state) => {
           if (page >= 1 && page <= state.maxPages) {
+            set({ movies: [], loading: true })
             state.fetchByTerm(state.searchTerm,page);
-            return { currentPage: page,movies:[]};
+            return { currentPage: page};
           }
           return state;
         });

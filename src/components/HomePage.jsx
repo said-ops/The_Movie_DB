@@ -10,6 +10,7 @@ function HomePage() {
   const fetchPopular = usePopularStore((state) => state.fetchPopular);
   const currentPage = usePopularStore((state) => state.currentPage);
   const setPage = usePopularStore((state) => state.setPage);
+  
 
   useEffect(() => {
     fetchPopular(currentPage);
@@ -63,7 +64,9 @@ function HomePage() {
                 })}
               {error && <div>{error}</div>}
               {!loading && !error && movies.length === 0 && (
-                <div>No movies found</div>
+                <div className="not-found">
+                  <img src="/images/not-found.webp" alt="Not found" />
+                </div>
               )}
             </div>
           </div>

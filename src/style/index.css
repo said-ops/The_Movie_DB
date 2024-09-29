@@ -475,6 +475,10 @@ nav h1 {
   background: linear-gradient(1deg, #8b4513, #ebeaea);
   color: #e0e0e0;
 }
+.not-found img{
+  width: 300px;
+    filter: drop-shadow(7px 4px 6px gold);
+}
 /*===================================Loaders==============================*/
 /* HTML: <div class="loader"></div> */
 .loader {

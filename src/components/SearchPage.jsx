@@ -1,76 +1,113 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import NavBar from "./NavBar";
-import Pagination from './Pagination'
+import Pagination from "./Pagination";
 import useSearchStore from "../store/searchStore";
 
 function SearchPage() {
+  const movies = useSearchStore((state) => state.movies);
+  const fetchByTerm = useSearchStore((state) => state.fetchByTerm);
+  const setPage = useSearchStore((state) => state.setPage);
+  const currentPage = useSearchStore((state) => state.currentPage);
+  const maxPages = useSearchStore((state) => state.maxPages);
+  const searchTerm = useSearchStore((state) => state.searchTerm);
+  const setTerm = useSearchStore((state) => state.setTerm);
+  const loading = useSearchStore((state) => state.loading);
+  const error = useSearchStore((state) => state.error);
+  const [query,setQuery]=useState('')
 
-  const movies = useSearchStore(state=>state.movies)
-  const fetchByTerm = useSearchStore(state=>state.fetchByTerm)
-  const setPage = useSearchStore(state=>state.setPage)
-  const currentPage = useSearchStore(state=>state.currentPage)
-  const maxPages = useSearchStore(state=>state.maxPages)
-  const searchTerm = useSearchStore(state=>state.searchTerm)
-  const setTerm = useSearchStore(state=>state.setTerm)
-
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-    if(searchTerm){
-      fetchByTerm(searchTerm,currentPage)
-      // console.log(movies)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchTerm) {
+      setQuery(searchTerm)
+      fetchByTerm(searchTerm, currentPage);
     }
-  }
+  };
   return (
     <>
       <section className="app-container">
         <NavBar />
-        <form action="#"
-        onSubmit={e=>handleSubmit(e)}
-        >
-        <div className="search-container">
-          <div className="search">
-            <label htmlFor="search">Search</label>
-            <input
-              type="text"
-              name="search"
-              id="search"
-              value={searchTerm}
-              onChange={e=>setTerm(e.target.value)}
-            />
-            <button type="submit" className="search-btn">Search</button>
-            <span className="error">this field is required</span>
+        {/* search form  */}
+        <form action="#" onSubmit={(e) => handleSubmit(e)}>
+          <div className="search-container">
+            <div className="search">
+              <label htmlFor="search">Search</label>
+              <input
+                type="text"
+                name="search"
+                id="search"
+                value={searchTerm}
+                onChange={(e) => setTerm(e.target.value)}
+              />
+              <button type="submit" className="search-btn">
+                Search
+              </button>
+              <span className="error">this field is required</span>
+            </div>
           </div>
-        </div>
         </form>
         <div className="home-container">
-          <h1>Search Results For : <span className="search-term">Search Term</span></h1>
+          <h1>
+            Search Results For :
+            <span className="search-term">{searchTerm}</span>
+          </h1>
           <div className="cards">
             {/* movies cards goes here */}
             {movies.length > 0 &&
-                movies.map((movie, index) => {
-                  return (
-                    <div className="card" key={index}>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path?movie.poster_path:movie.backdrop_path}`}
-                        alt=""
-                      />
-                      <div className="card-body">
-                        <p className="movie-title">
-                          {movie.title.split(" ").slice(0, 3).join(" ") + "..."}
-                        </p>
-                        <p className="desc">
-                          <span className="duration">{movie.release_date}</span>
-                          <span className="genre">
-                            {movie.vote_average&&movie.vote_average.toFixed(1)}
-                          </span>
-                        </p>
-                      </div>
+              movies.map((movie, index) => {
+                return (
+                  <div className="card" key={index}>
+                    <img
+                      src={
+                        movie.poster_path || movie.backdrop_path
+                          ? `https://image.tmdb.org/t/p/w300/${
+                              movie.poster_path || movie.backdrop_path
+                            }`
+                          : "https://placehold.jp/150x250.png"
+                      }
+                      alt=""
+                    />
+                    <div className="card-body">
+                      <p className="movie-title">
+                        {movie.title.split(" ").slice(0, 3).join(" ") + "..."}
+                      </p>
+                      <p className="desc">
+                        <span className="duration">{movie.release_date}</span>
+                        <span className="genre">
+                          {movie.vote_average && movie.vote_average.toFixed(1)}
+                        </span>
+                      </p>
                     </div>
-                  );
-                })}
+                  </div>
+                );
+              })}
+              {/* skeleton goes here */}
+            {loading &&
+              [...Array(10)].map((_, index) => {
+                return (
+                  <div className="card skeleton-card" key={index}>
+                    <div className="skeleton-img"></div>
+                    <div className="card-body">
+                      <div className="skeleton-text title-ske"></div>
+                      <div className="skeleton-text desc-ske"></div>
+                      <div className="skeleton-text desc-ske"></div>
+                    </div>
+                  </div>
+                );
+              })}
+              {/* error message handling */}
+              {error && <div>{error}</div>}
+              {/* no result is found */}
+              {!loading && !error && movies.length === 0 && query&& (
+                <div className="not-found">
+                  <img src="/images/not-found.webp" alt="Not found" />
+                </div>
+              )}
           </div>
         </div>
-        {maxPages>1&&<Pagination setPage={setPage} currentPage={currentPage}/>}
+        {/* pagination component */}
+        {maxPages > 1 && (
+          <Pagination setPage={setPage} currentPage={currentPage} />
+        )}
       </section>
     </>
   );
