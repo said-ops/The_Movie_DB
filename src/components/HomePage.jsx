@@ -1,18 +1,23 @@
 import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import usePopularStore from "../store/PopularMoviesStore";
+import Pagination from "./Pagination";
 
 function HomePage() {
   const movies = usePopularStore((state) => state.movies);
   const error = usePopularStore((state) => state.error);
   const loading = usePopularStore((state) => state.loading);
   const fetchPopular = usePopularStore((state) => state.fetchPopular);
+  const currentPage = usePopularStore((state) => state.currentPage);
+  const setPage = usePopularStore((state) => state.setPage);
+
 
   useEffect(() => {
-    fetchPopular();
+    fetchPopular(currentPage);
     console.log(movies);
     console.log(error);
-  }, []);
+    console.log(currentPage)
+  }, [currentPage]);
   return (
     <>
       <>
@@ -31,7 +36,7 @@ function HomePage() {
                         alt=""
                       />
                       <div className="card-body">
-                        <p className="movie-title">{movie.title}</p>
+                        <p className="movie-title">{movie.title.split(' ').slice(0,3).join(' ')+'...'}</p>
                         <p className="desc">
                           <span className="duration">{movie.release_date}</span>
                           <span className="genre">
@@ -61,6 +66,8 @@ function HomePage() {
               )}
             </div>
           </div>
+          <Pagination setPage={setPage} currentPage={currentPage} />
+
         </section>
       </>
     </>

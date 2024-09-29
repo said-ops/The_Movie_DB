@@ -445,6 +445,30 @@ nav h1 {
   font-family: "pacifico";
   text-align: center;
 }
+/*============ pagination=======================*/
+.pagination{
+  align-self: center;
+    display: flex;
+    gap: 0.2rem;
+}
+.prev-btn,
+.next-btn,
+.pag-btn{
+  padding: 0.5rem;
+    background: linear-gradient(91deg, #8b4513, #ffd700);
+    border: 0;
+    font-family: 'pacifico';
+}
+.prev-btn:hover,
+.next-btn:hover,
+.pag-btn:hover{
+  color: #d4af37;
+  cursor: pointer;
+}
+.pag-active{
+  background: linear-gradient(1deg, #8b4513, #ebeaea);
+  color: #e0e0e0;
+}
 /*===================================Loaders==============================*/
 /* HTML: <div class="loader"></div> */
 .loader {
