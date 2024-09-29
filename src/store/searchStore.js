@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 const apiKey = import.meta.env.VITE_API_KEY_AUTH;
 // &query=${searchTerm}&page=${page}
-const termUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}`;
+const termUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&include_adult=false`;
 
 
 const useSearchStore = create(set=>({

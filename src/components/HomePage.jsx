@@ -14,9 +14,6 @@ function HomePage() {
 
   useEffect(() => {
     fetchPopular(currentPage);
-    console.log(movies);
-    console.log(error);
-    console.log(currentPage);
   }, [currentPage]);
   return (
     <>

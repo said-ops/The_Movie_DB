@@ -13,12 +13,12 @@ function SearchPage() {
   const setTerm = useSearchStore((state) => state.setTerm);
   const loading = useSearchStore((state) => state.loading);
   const error = useSearchStore((state) => state.error);
-  const [query,setQuery]=useState('')
+  const [query, setQuery] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchTerm) {
-      setQuery(searchTerm)
+      setQuery(searchTerm);
       fetchByTerm(searchTerm, currentPage);
     }
   };
@@ -46,11 +46,19 @@ function SearchPage() {
           </div>
         </form>
         <div className="home-container">
-          <h1>
-            Search Results For :
-            <span className="search-term">{searchTerm}</span>
-          </h1>
+          {query ? (
+            <h1>
+              Search Results For :<span className="search-term">{query}</span>
+            </h1>
+          ) : (
+            ""
+          )}
           <div className="cards">
+            {!loading && !error && movies.length === 0&&(
+              <div className="not-found">
+                <img src="/images/post-result.png" alt="look for a movie" />
+              </div>
+            )}
             {/* movies cards goes here */}
             {movies.length > 0 &&
               movies.map((movie, index) => {
@@ -80,7 +88,7 @@ function SearchPage() {
                   </div>
                 );
               })}
-              {/* skeleton goes here */}
+            {/* skeleton goes here */}
             {loading &&
               [...Array(10)].map((_, index) => {
                 return (
@@ -94,14 +102,16 @@ function SearchPage() {
                   </div>
                 );
               })}
-              {/* error message handling */}
-              {error && <div>{error}</div>}
-              {/* no result is found */}
-              {!loading && !error && movies.length === 0 && query&& (
-                <div className="not-found">
-                  <img src="/images/not-found.webp" alt="Not found" />
-                </div>
-              )}
+            {/* error message handling */}
+            {error && <div className="not-found">
+              <img src="/images/somthing-wrong.webp" alt="Something went wrong" />
+              </div>}
+            {/* no result is found */}
+            {!loading && !error && movies.length === 0 && query && (
+              <div className="not-found">
+                <img src="/images/not-found.webp" alt="Not found" />
+              </div>
+            )}
           </div>
         </div>
         {/* pagination component */}

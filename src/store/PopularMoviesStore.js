@@ -1,8 +1,7 @@
 import { create } from "zustand";
 
 const apiKey = import.meta.env.VITE_API_KEY_AUTH;
-const popularUrl = `https://api.themoviedb.org/3/movie/popular?`;
-const termUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}`;
+const popularUrl = `https://api.themoviedb.org/3/movie/popular?&include_adult=false`;
 
 const usePopularStore = create((set) => ({
   movies: [],
@@ -15,7 +14,7 @@ const usePopularStore = create((set) => ({
   fetchPopular: async (page) => {
     try {
       set({ loading: true, error: "" });
-      const res = await fetch(`${popularUrl}api_key=${apiKey}&page=${page}`);
+      const res = await fetch(`${popularUrl}&api_key=${apiKey}&page=${page}`);
       const data = await res.json();
       set({ movies: data.results, loading: false });
       if (!res.ok) {
