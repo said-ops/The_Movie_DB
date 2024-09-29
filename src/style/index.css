@@ -155,8 +155,9 @@ nav h1 {
   padding: 2rem;
   /* background-color: var(--very-light-gray); */
   min-height: 100vh;
-  background: linear-gradient(208deg, #ffd700, #8b4513);
+  background: linear-gradient(45deg, #ffd700, #8b4513);
   color: #4b2d0d;
+ 
 }
 .home-container {
   display: flex;
@@ -217,6 +218,7 @@ nav h1 {
 .card:hover {
   transform: scale(1.05);
   cursor: pointer;
+  background: linear-gradient(92deg, #fff5cc, #d2691e);
 }
 .bookmark,
 .genr {
@@ -537,7 +539,6 @@ nav h1 {
   height: 15px;
 }
 
-/* Skeleton loading animation */
 @keyframes skeleton-loading {
   0% {
     background-color: #e0e0e0;
@@ -549,3 +550,4 @@ nav h1 {
     background-color: #e0e0e0;
   }
 }
+/*=============animation=============*/

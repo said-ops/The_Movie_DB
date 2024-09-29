@@ -1,7 +1,8 @@
 import { create } from "zustand";
 
 const apiKey = import.meta.env.VITE_API_KEY_AUTH;
-const baseUrl = `https://api.themoviedb.org/3/movie/popular?`;
+const popularUrl = `https://api.themoviedb.org/3/movie/popular?`;
+const termUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}`;
 
 const usePopularStore = create((set) => ({
   movies: [],
@@ -14,7 +15,7 @@ const usePopularStore = create((set) => ({
   fetchPopular: async (page) => {
     try {
       set({ loading: true, error: "" });
-      const res = await fetch(`${baseUrl}api_key=${apiKey}&page=${page}`);
+      const res = await fetch(`${popularUrl}api_key=${apiKey}&page=${page}`);
       const data = await res.json();
       set({ movies: data.results, loading: false });
       if (!res.ok) {
@@ -28,8 +29,8 @@ const usePopularStore = create((set) => ({
   setPage: (page) => {
     set((state) => {
       if (page >= 1 && page <= state.maxPages) {
-        state.fetchPopular(page); // Fetch movies for the new page
-        return { currentPage: page };
+        state.fetchPopular(page);
+        return { currentPage: page,movies:[]};
       }
       return state;
     });
