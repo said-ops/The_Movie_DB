@@ -50,6 +50,8 @@ function SignIn() {
       const authError = await useAuthStore.getState().errorLogin;
       if(!authError){
         navigate('/')
+        setEmail(''),
+        setPassword('')
       }
     }
   };

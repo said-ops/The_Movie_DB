@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { auth } from "../service/firesbase";
-import { signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword,onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
 
 
 const useAuthStore = create((set, get) => ({
@@ -9,8 +9,10 @@ const useAuthStore = create((set, get) => ({
   loading: null,
   email: "",
   password: "",
+  confirmPass:'',
   setEmail: (email) => set({ email: email }),
   setPassword: (password) => set({ password: password }),
+  setConfirmPass: (password) => set({ confirmPass: password }),
 
   //function for sign in with email and password
 
@@ -30,6 +32,27 @@ const useAuthStore = create((set, get) => ({
 
     } catch (error) {
        set({ errorLogin: error.message, loading: false });
+    }
+  },
+
+  //function for sign up with email and password
+
+  signUp :async ()=>{
+    const {email,password} = get()
+    try {
+      set({loading:true,errorLogin:''})
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      set({user:user,loading:false});
+      if(!user){
+        throw new Error("Error Signing Up");
+      }
+    } catch (error) {
+      set({loading:false,errorLogin:error.message})
     }
   },
 
