@@ -20,14 +20,17 @@ function SignIn() {
     if(user){
       navigate('/')
     }
-  },[])
+  },[user])
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email && password) {
       await signIn();
-      console.log(user);
-      if (!errorLogin) {
-        navigate("/");
+      const authError = await useAuthStore.getState().errorLogin;
+
+      if(!authError){
+        navigate('/')
       }
     }
   };

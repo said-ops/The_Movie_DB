@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { auth } from "../service/firesbase";
 import { signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 
+
 const useAuthStore = create((set, get) => ({
   user: JSON.parse(localStorage.getItem('user') || null),
   errorLogin: null,
@@ -22,10 +23,13 @@ const useAuthStore = create((set, get) => ({
         email,
         password
       );
+
       localStorage.setItem('user',JSON.stringify(userCredential.user));
       set({ user: userCredential.user, loading: false });
+      
+
     } catch (error) {
-      set({ errorLogin: error.message, loading: false });
+       set({ errorLogin: error.message, loading: false });
     }
   },
 
