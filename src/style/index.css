@@ -85,7 +85,7 @@ body {
   font-size: 12px;
   font-style: italic;
   color: var(--red-accent);
-  display: none;
+  /* display: none; */
 }
 .option {
   font-size: 13px;

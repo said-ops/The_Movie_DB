@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 
@@ -22,10 +22,29 @@ function SignIn() {
     }
   },[user])
 
+  const [formErrors,setErrors]=useState('')
   
   const handleSubmit = async (e) => {
+    const errors={}
+    let hasError =false
     e.preventDefault();
-    if (email && password) {
+
+    if(!email){
+      errors.errorEmail='This field is required'
+      hasError=true
+    }else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      errors.errorEmail='Invalid Email Address'
+      hasError=true
+    }
+    if(!password){
+      errors.errorPass='This field is required'
+      hasError=true
+    }else if(password.length<8){
+      errors.errorPass='Password must be 8 characters or more'
+      hasError=true
+    }
+    setErrors(errors)
+    if (!hasError) {
       await signIn();
       const authError = await useAuthStore.getState().errorLogin;
 
@@ -50,7 +69,7 @@ function SignIn() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <span className="error">this field is required</span>
+            {formErrors.errorEmail?<span className="error">{formErrors.errorEmail}</span>:''}
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -60,8 +79,11 @@ function SignIn() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <span className="error">this field is required</span>
+            {formErrors.errorPass?<span className="error">{formErrors.errorPass}</span>:''}
+            
           </div>
+          {errorLogin?<span className="error">{errorLogin}</span>:''}
+
           {loading ?
             <div className="loader"></div>
             :

@@ -41,7 +41,6 @@ function SearchPage() {
               <button type="submit" className="search-btn">
                 Search
               </button>
-              <span className="error">this field is required</span>
             </div>
           </div>
         </form>

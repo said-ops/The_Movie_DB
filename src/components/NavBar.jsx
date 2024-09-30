@@ -29,7 +29,7 @@ function NavBar() {
           {user ? (
             <li onClick={signOut}>Sign Out</li>
           ) : (
-            <Link to="/Sign-In">
+            <Link to="/sign-in">
               <li>Sign</li>
             </Link>
           )}
