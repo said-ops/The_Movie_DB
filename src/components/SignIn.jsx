@@ -12,6 +12,7 @@ function SignIn() {
   const setPassword = useAuthStore((state) => state.setPassword);
   const signIn = useAuthStore((state) => state.signIn);
   const userCheck = useAuthStore((state) => state.userCheck);
+  const [formErrors,setErrors]=useState('')
   const navigate = useNavigate();
 
 
@@ -22,7 +23,7 @@ function SignIn() {
     }
   },[user])
 
-  const [formErrors,setErrors]=useState('')
+  
   
   const handleSubmit = async (e) => {
     const errors={}
@@ -47,7 +48,6 @@ function SignIn() {
     if (!hasError) {
       await signIn();
       const authError = await useAuthStore.getState().errorLogin;
-
       if(!authError){
         navigate('/')
       }

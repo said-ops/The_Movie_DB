@@ -45,6 +45,7 @@ function SearchPage() {
           </div>
         </form>
         <div className="home-container">
+          {/* display the heading after submition */}
           {query ? (
             <h1>
               Search Results For :<span className="search-term">{query}</span>
@@ -54,7 +55,7 @@ function SearchPage() {
           )}
           <div className="cards">
             {/* initial image to display  */}
-            {!loading && !error && !query&&(
+            {!loading && !error && movies.length===0 &&!query&&(
               <div className="not-found">
                 <img src="/images/post-result.png" alt="look for a movie" />
               </div>

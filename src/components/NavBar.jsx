@@ -29,9 +29,10 @@ function NavBar() {
           {user ? (
             <li onClick={signOut}>Sign Out</li>
           ) : (
-            <Link to="/sign-in">
-              <li>Sign</li>
-            </Link>
+            // <Link to="/sign-in">
+            //   <li>Sign</li>
+            // </Link>
+            ''
           )}
         </ul>
         <div className="menu-icon" onClick={handleClick}>
