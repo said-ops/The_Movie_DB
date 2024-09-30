@@ -28,8 +28,9 @@ const usePopularStore = create((set) => ({
   setPage: (page) => {
     set((state) => {
       if (page >= 1 && page <= state.maxPages) {
+        set({ movies: [], loading: true })
         state.fetchPopular(page);
-        return { currentPage: page,movies:[]};
+        return { currentPage: page};
       }
       return state;
     });

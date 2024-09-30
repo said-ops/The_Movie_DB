@@ -1,13 +1,11 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './firebase'; 
+import React from "react";
+import { Navigate } from "react-router-dom";
+import useAuthStore from "../store/authStore";
 
-function ProtectedRoute({children}) {
+function ProtectedRoute({ children }) {
+  const user = useAuthStore((state) => state.user);
 
-    const [user] = useAuthState(auth);
-
-  return user? children : <Navigate to={'/Sign-In'}/>
+  return user ? children : <Navigate to={"/Sign-In"} />;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

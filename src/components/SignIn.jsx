@@ -1,7 +1,6 @@
 import React from "react";
-import { Link ,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
-
 
 function SignIn() {
   const email = useAuthStore((state) => state.email);
@@ -13,20 +12,20 @@ function SignIn() {
   const signIn = useAuthStore((state) => state.signIn);
   const navigate = useNavigate();
 
-  const handleSubmit =async (e)=>{
-    e.preventDefault()
-    if(email && password){
-    await signIn()
-    console.log(user)
-    if(!error){
-      navigate('/')
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (email && password) {
+      await signIn();
+      console.log(user);
+      if (!error) {
+        navigate("/");
+      }
     }
-    }
-  }
+  };
   return (
     <>
       <section className="sign-container">
-        <form action="#" onSubmit={e=>handleSubmit(e)}>
+        <form action="#" onSubmit={(e) => handleSubmit(e)}>
           <h1>Sign In</h1>
           <div className="inputs">
             <label htmlFor="email">Email Address</label>
@@ -36,7 +35,7 @@ function SignIn() {
               id="email"
               placeholder="example@domain.com"
               value={email}
-              onChange={e=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <span className="error">this field is required</span>
             <label htmlFor="password">Password</label>
@@ -46,7 +45,7 @@ function SignIn() {
               id="password"
               placeholder="Enter your password"
               value={password}
-              onChange={e=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <span className="error">this field is required</span>
           </div>
