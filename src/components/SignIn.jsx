@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 
@@ -7,17 +7,26 @@ function SignIn() {
   const password = useAuthStore((state) => state.password);
   const setEmail = useAuthStore((state) => state.setEmail);
   const user = useAuthStore((state) => state.user);
-  const error = useAuthStore((state) => state.error);
+  const errorLogin  = useAuthStore((state) => state.errorLogin);
+  const loading = useAuthStore((state) => state.loading);
   const setPassword = useAuthStore((state) => state.setPassword);
   const signIn = useAuthStore((state) => state.signIn);
+  const userCheck = useAuthStore((state) => state.userCheck);
   const navigate = useNavigate();
 
+
+  useEffect(()=>{
+    userCheck();
+    if(user){
+      navigate('/')
+    }
+  },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email && password) {
       await signIn();
       console.log(user);
-      if (!error) {
+      if (!errorLogin) {
         navigate("/");
       }
     }
@@ -25,6 +34,7 @@ function SignIn() {
   return (
     <>
       <section className="sign-container">
+        
         <form action="#" onSubmit={(e) => handleSubmit(e)}>
           <h1>Sign In</h1>
           <div className="inputs">
@@ -49,7 +59,11 @@ function SignIn() {
             />
             <span className="error">this field is required</span>
           </div>
-          <button type="submit">Sign In</button>
+          {loading ?
+            <div className="loader"></div>
+            :
+            <button type="submit">Sign In</button>  
+        }
           <span className="option">
             You don’t have an account? ,{" "}
             <Link to="/Sign-Up">

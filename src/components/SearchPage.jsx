@@ -54,7 +54,8 @@ function SearchPage() {
             ""
           )}
           <div className="cards">
-            {!loading && !error && movies.length === 0&&(
+            {/* initial image to display  */}
+            {!loading && !error && !query&&(
               <div className="not-found">
                 <img src="/images/post-result.png" alt="look for a movie" />
               </div>

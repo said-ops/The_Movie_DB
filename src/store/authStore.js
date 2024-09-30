@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import { auth } from "../service/firesbase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
 
 const useAuthStore = create((set, get) => ({
-  user: null,
-  error: null,
+  user: JSON.parse(localStorage.getItem('user') || null),
+  errorLogin: null,
   loading: null,
   email: "",
   password: "",
@@ -16,23 +16,40 @@ const useAuthStore = create((set, get) => ({
   signIn: async () => {
     const { email, password } = get();
     try {
-      set({ loading: true, error: "" });
+      set({ loading: true, errorLogin: "" });
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
+      localStorage.setItem('user',JSON.stringify(userCredential.user));
       set({ user: userCredential.user, loading: false });
     } catch (error) {
-      set({ error: error.message, loading: false });
+      set({ errorLogin: error.message, loading: false });
     }
   },
 
   //function to sign out
   signOut: async () => {
     await auth.signOut();
+    localStorage.removeItem('user')
     set({ user: null, email: "", password: "" });
   },
+
+  //function to check if the user is authenticated on reload
+
+  userCheck : ()=>{
+    onAuthStateChanged(auth, (user)=>{
+      if(user){
+        localStorage.setItem('user', JSON.stringify(user));
+        set({user:user})
+      }
+      else{
+        localStorage.removeItem('user');
+        set({user:null})
+      }
+    });
+  }
 }));
 
 export default useAuthStore;

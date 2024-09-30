@@ -486,8 +486,9 @@ nav h1 {
   font-weight: bold;
   font-family: monospace;
   font-size: 30px;
-  background: linear-gradient(90deg, #000 50%, #0000 0) right/200% 100%;
+  background: linear-gradient(90deg, #ffd700 50%, #ffd700) right/200% 100%;
   animation: l21 2s infinite linear;
+  align-self: center;
 }
 .loader::before {
   content: "Loading...";
