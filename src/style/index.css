@@ -190,6 +190,7 @@ nav h1 {
   gap: 1rem;
   padding: 1rem;
   width: 193px;
+  height: 360px;
   box-shadow: 1px 1px 13px 1px var(--dark-gray);
   border-radius: 1rem;
   transition: all 0.5s ease-in-out;
@@ -225,9 +226,9 @@ nav h1 {
   background: linear-gradient(268deg, #ffd700, #8b4513);
 }
 @media screen and (max-width: 550px) {
-  .card {
+  /* .card {
     width: 250px;
-  }
+  } */
   .card img {
     width: 100%;
   }
@@ -278,11 +279,14 @@ nav h1 {
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
+  row-gap: 1rem;
 }
 .genres {
   display: flex;
   gap: 1rem;
   align-items: center;
+  flex-wrap: wrap;
+    justify-content: center;
 }
 .genr {
   padding: 0.5rem;
@@ -301,6 +305,7 @@ nav h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 .rate {
   display: flex;
@@ -349,7 +354,7 @@ nav h1 {
   font-size: 17px;
   background: linear-gradient(180deg, #ffd700, #8b4513);
 }
-@media screen and (max-width: 940px) {
+@media screen and (max-width: 999px) {
   .infos {
     flex-direction: column;
     row-gap: 1rem;

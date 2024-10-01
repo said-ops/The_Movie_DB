@@ -28,7 +28,7 @@ function MovieDetails() {
       <section className="app-container">
         <NavBar />
         <>
-          {details &&!error && (
+          {details &&!error && !laoding&& (
             <>
               <div className="title">
                 <h1>{details.original_title}</h1>
@@ -170,6 +170,10 @@ function MovieDetails() {
               </div>
             </>
           )}
+          {/* details loading */}
+          {laoding&&<div className="loader"></div>}
+          {/* error fetching details */}
+          {error&&<div className="not-found"><img src="/images/somthing-wrong.webp" alt="error fetching details" /></div>}
         </>
       </section>
     </>
