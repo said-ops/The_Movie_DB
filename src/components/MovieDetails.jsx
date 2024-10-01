@@ -10,9 +10,11 @@ function MovieDetails() {
   const fetchDetails = useDetailsStore((state) => state.fetchDetails);
   const fetchTrailer = useDetailsStore((state) => state.fetchTrailer);
   const trailer = useDetailsStore((state) => state.trailer);
+  const trailerError = useDetailsStore((state) => state.trailerError);
   const trailerLoading = useDetailsStore((state) => state.trailerLoading);
   const fetchCasts = useDetailsStore((state) => state.fetchCasts);
   const castsLoading = useDetailsStore((state) => state.castsLoading);
+  const castsError = useDetailsStore((state) => state.castsError);
   const casts = useDetailsStore((state) => state.casts);
   const { id } = useParams();
 
@@ -26,7 +28,7 @@ function MovieDetails() {
       <section className="app-container">
         <NavBar />
         <>
-          {details && (
+          {details &&!error && (
             <>
               <div className="title">
                 <h1>{details.original_title}</h1>
@@ -52,6 +54,7 @@ function MovieDetails() {
               <div className="infos">
                 <div className="details">
                   <div className="poster">
+                    {/* display skeleton or the poster */}
                     {laoding ? (
                       <div className="card skeleton-card">
                         <div className="skeleton-img"></div>
@@ -115,7 +118,8 @@ function MovieDetails() {
                   </div>
                 </div>
                 <div className="trailer">
-                  {trailer && (
+                  {/* displaying trailer */}
+                  {trailer &&!trailerError &&!trailerLoading && (
                     <iframe
                       width="423px"
                       height="319px"
@@ -125,12 +129,16 @@ function MovieDetails() {
                       allowFullScreen
                     ></iframe>
                   )}
-                  {trailerLoading && <div className="loader"></div>}
+                  {/* display loader for the trailer */}
+                  {trailerLoading && <div className="skeleton-iframe"></div>}
+                  {/* display error for the trailer */}
+                  {trailerError&&(<h2>Something went wrong</h2>)}
                 </div>
               </div>
-              {casts&&<h2 className="cast-h">Cast</h2>}
+              <h2 className="cast-h">Cast</h2>
               <div className="casts">
-                {casts &&
+                {/* display cast  */}
+                {!castsLoading && !castsError && casts.length > 0 &&
                   casts.map((cast, index) => {
                     return (
                       <div className="cast" key={index}>
@@ -151,6 +159,14 @@ function MovieDetails() {
                       </div>
                     );
                   })}
+                  {/* display loader for cast */}
+                  {castsLoading && (
+                    Array(8).fill().map((_, index) => (
+                      <div className="skeleton" key={index}></div>
+                    ))
+                  )}
+                  {/* display error for cast */}
+                  {castsError&&(<h2>Something went wrong</h2>)}
               </div>
             </>
           )}

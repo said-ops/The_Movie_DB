@@ -505,8 +505,8 @@ nav h1 {
     background-position: left;
   }
 }
-/*===================skeleton===================*/
-/* Skeleton Effect */
+/*===================skeletons===================*/
+/* Skeleton Effect for movie card */
 .skeleton-card {
   display: flex;
   flex-direction: column;
@@ -553,6 +553,47 @@ nav h1 {
   }
   100% {
     background-color: #e0e0e0;
+  }
+}
+/*=======skeleton effect for cast card======*/
+.skeleton {
+  width: 200px;
+  height: 250px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading-cast 1.5s infinite;
+  border-radius: 1rem;
+  box-shadow: 0px 5px 20px 1px #d2691e;
+  overflow: hidden;
+}
+/* Skeleton animation */
+@keyframes skeleton-loading-cast {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+/**skeleton effect for the trailer/
+/* Skeleton loader for iframe (trailer) */
+.skeleton-iframe {
+  width: 423px;
+  height: 319px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading-trailer 1.5s infinite;
+  border-radius: 1rem;
+  box-shadow: 0px 5px 20px 1px var(--dark-gray);
+}
+
+/* Skeleton animation */
+@keyframes skeleton-loading-trailer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 /*=============animation=============*/
