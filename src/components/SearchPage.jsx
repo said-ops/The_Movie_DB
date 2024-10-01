@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavBar from "./NavBar";
 import Pagination from "./Pagination";
 import useSearchStore from "../store/searchStore";
+import { Link } from "react-router-dom";
 
 function SearchPage() {
   const movies = useSearchStore((state) => state.movies);
@@ -64,7 +65,8 @@ function SearchPage() {
             {movies.length > 0 &&
               movies.map((movie, index) => {
                 return (
-                  <div className="card" key={index}>
+                  <Link key={index} to={`/details/${movie.id}`}>
+                    <div className="card" >
                     <img
                       src={
                         movie.poster_path || movie.backdrop_path
@@ -87,6 +89,7 @@ function SearchPage() {
                       </p>
                     </div>
                   </div>
+                  </Link>
                 );
               })}
             {/* skeleton goes here */}
