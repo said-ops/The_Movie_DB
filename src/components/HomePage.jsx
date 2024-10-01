@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import usePopularStore from "../store/PopularMoviesStore";
 import Pagination from "./Pagination";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const movies = usePopularStore((state) => state.movies);
@@ -27,7 +28,8 @@ function HomePage() {
               {movies.length > 0 &&
                 movies.map((movie, index) => {
                   return (
-                    <div className="card" key={index}>
+                    <Link to={`/details/${parseInt(movie.id)}`} key={index}>
+                      <div className="card" key={index}>
                       <img
                         src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                         alt=""
@@ -44,6 +46,7 @@ function HomePage() {
                         </p>
                       </div>
                     </div>
+                    </Link>
                   );
                 })}
               {loading &&

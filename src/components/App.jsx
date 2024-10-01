@@ -5,6 +5,7 @@ import SignUp from "./SignUp";
 import HomePage from "./HomePage";
 import SearchPage from "./SearchPage";
 import Watchlist from "./Watchlist";
+import MovieDetails from './MovieDetails'
 import ProtectedRoute from "../routes/ProtectedRoute";
 
 function App() {
@@ -25,6 +26,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <SearchPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/details/:id"
+            element={
+              <ProtectedRoute>
+                <MovieDetails/>
               </ProtectedRoute>
             }
           />

@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "./NavBar";
+import useDetailsStore from "../store/movieDetailsStore";
+import { useParams } from "react-router-dom";
 
 function MovieDetails() {
-  const cast = [
-    { name: "Ryan Gosling", role: "Six", image: "/images/profile-pic.jpg" },
-    { name: "Chris Evans", role: "Lloyd Hansen", image: "/images/profile-pic.jpg" },
-    { name: "Ana de Armas", role: "Dani Miranda", image: "/images/profile-pic.jpg" },
-    { name: "Jessica Henwick", role: "Suzanne Brewer", image: "/images/profile-pic.jpg" },
-    { name: "Wagner Moura", role: "Laszlo Sosa", image: "/images/profile-pic.jpg" },
-    { name: "Billy Bob Thornton", role: "Donald Fitzroy", image: "/images/profile-pic.jpg" }
-  ];
+
+  const laoding = useDetailsStore(state=>state.loading)
+  const error = useDetailsStore(state=>state.error)
+  const fetchDetails = useDetailsStore(state=>state.fetchDetails)
+  const {id}=useParams()
+
+  useEffect(()=>{
+    fetchDetails(id)
+    
+  },[id])
   return (
     <>
       <section className="app-container">
