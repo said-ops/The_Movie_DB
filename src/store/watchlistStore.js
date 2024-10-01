@@ -7,15 +7,20 @@ import useAuthStore from "./authStore"
 const useWatchListSotre = create((set,get)=>({
 
     watchList:[],
-    error:null,
+    errorW:null,
     loading:false,
+    //function to check if id is in watchlist
+    isInWatchlist: (movieId) => {
+        const { watchList } = get();
+        return watchList.includes(movieId);
+    },
 
     //function to fetch the watchlist from firestore
 
     fetchWatchlist : async () => {
         const { user } = useAuthStore.getState();
         if (!user) return;
-        set({ loading: true, error: null }); // Typo: error was set to false, should be null for consistency
+        set({ loading: true, errorW: null });
     
         try {
             const userDoc = doc(db, 'users', user.uid);
@@ -28,7 +33,7 @@ const useWatchListSotre = create((set,get)=>({
                 set({ watchList: [], loading: false });
             }
         } catch (error) {
-            set({ error: error.message, loading: false });
+            set({ errorW: error.message, loading: false });
         }
     }
     ,
@@ -41,7 +46,7 @@ const useWatchListSotre = create((set,get)=>({
         if (!user) return;
     
         const userDoc = doc(db, 'users', user.uid);
-    
+        set({loading:true,errorW:null})
         try {
             // Check if the document exists
             const docSnap = await getDoc(userDoc);
@@ -50,15 +55,15 @@ const useWatchListSotre = create((set,get)=>({
                 // Document exists, update the watchlist
                 const updatedWatchlist = [...watchList, id];
                 await updateDoc(userDoc, { watchlist: updatedWatchlist });
-                set({ watchList: updatedWatchlist });
+                set({ watchList: updatedWatchlist,loading:false });
             } else {
                 // Document doesn't exist, create it with an initial watchlist
                 const initialWatchlist = [id];
                 await setDoc(userDoc, { watchlist: initialWatchlist });
-                set({ watchlist: initialWatchlist });
+                set({ watchlist: initialWatchlist,loading:false });
             }
         } catch (error) {
-            set({ error: error.message, loading: false });
+            set({ errorW: error.message, loading: false });
         }
     }
     ,
@@ -71,11 +76,11 @@ const useWatchListSotre = create((set,get)=>({
         if (!user) return;
     
         const userDoc = doc(db, 'users', user.uid);
-    
+        set({loading:true,errorW:null})
         try {
           const updatedWatchlist = watchList.filter((id) => id !== movieId);
           await updateDoc(userDoc, { watchlist: updatedWatchlist });
-          set({ watchList: updatedWatchlist });
+          set({ watchList: updatedWatchlist,loading:false });
         } catch (error) {
           console.error('Error removing from watchlist:', error);
           set({ error: 'Failed to remove movie', loading: false });
