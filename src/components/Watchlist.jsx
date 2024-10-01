@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from './NavBar'
+import useWatchListSotre from '../store/watchlistStore'
 
 function Watchlist() {
+
+    const watchList = useWatchListSotre(state=>state.watchList)
+    const fetchWatchlist = useWatchListSotre(state=>state.fetchWatchlist)
+    useEffect(()=>{
+        
+        const loadWatchlist = async () => {
+            await fetchWatchlist(); 
+            console.log(watchList); 
+        };
+        loadWatchlist()
+    },[])
   return (
     <>
         <section className='app-container'>

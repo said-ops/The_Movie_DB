@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import useDetailsStore from "../store/movieDetailsStore";
 import { useParams } from "react-router-dom";
+import useWatchListSotre from "../store/watchlistStore";
 
 function MovieDetails() {
   const laoding = useDetailsStore((state) => state.loading);
@@ -17,11 +18,14 @@ function MovieDetails() {
   const castsError = useDetailsStore((state) => state.castsError);
   const casts = useDetailsStore((state) => state.casts);
   const { id } = useParams();
+  const addToWatchList = useWatchListSotre(state=>state.addToWatchList)
+  const loading = useWatchListSotre(state=>state.loading)
 
   useEffect(() => {
     fetchDetails(id);
     fetchTrailer(id);
     fetchCasts(id);
+    console.log(id)
   }, [id]);
   return (
     <>
@@ -32,7 +36,7 @@ function MovieDetails() {
             <>
               <div className="title">
                 <h1>{details.original_title}</h1>
-                <div className="bookmark">
+                <div className="bookmark" onClick={()=>addToWatchList(id)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="30px"
@@ -48,7 +52,7 @@ function MovieDetails() {
                       // style="&#10;"
                     />
                   </svg>
-                  <p>Bookmark</p>
+                  <p>{`${loading?'loading':'Bookmark'}`}</p>
                 </div>
               </div>
               <div className="infos">
