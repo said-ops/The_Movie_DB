@@ -4,22 +4,30 @@ import useDetailsStore from "../store/movieDetailsStore";
 import { useParams } from "react-router-dom";
 
 function MovieDetails() {
+  const laoding = useDetailsStore((state) => state.loading);
+  const error = useDetailsStore((state) => state.error);
+  const details = useDetailsStore((state) => state.details);
+  const fetchDetails = useDetailsStore((state) => state.fetchDetails);
+  const fetchTrailer = useDetailsStore((state) => state.fetchTrailer);
+  const trailer = useDetailsStore((state) => state.trailer);
+  const trailerLoading = useDetailsStore((state) => state.trailerLoading);
+  const fetchCasts = useDetailsStore((state) => state.fetchCasts);
+  const castsLoading = useDetailsStore((state) => state.castsLoading);
+  const { id } = useParams();
 
-  const laoding = useDetailsStore(state=>state.loading)
-  const error = useDetailsStore(state=>state.error)
-  const fetchDetails = useDetailsStore(state=>state.fetchDetails)
-  const {id}=useParams()
-
-  useEffect(()=>{
-    fetchDetails(id)
-    
-  },[id])
+  useEffect(() => {
+    fetchDetails(id);
+    fetchTrailer(id);
+    fetchCasts(id);
+  }, [id]);
   return (
     <>
       <section className="app-container">
         <NavBar />
-        <div className="title">
-          <h1>The Gray Man</h1>
+        <>
+        {details&&<>
+          <div className="title">
+          <h1>{details.original_title}</h1>
           <div className="bookmark">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,54 +50,59 @@ function MovieDetails() {
         <div className="infos">
           <div className="details">
             <div className="poster">
-              <img src="/images/movie-poster.jpg" alt="poster" />
+              <img
+                src={
+                  details.poster_path || details.backdrop_path
+                    ? `https://image.tmdb.org/t/p/w300/${
+                        details.poster_path || details.backdrop_path
+                      }`
+                    : "https://placehold.jp/150x250.png"
+                }
+                alt="poster"
+              />
             </div>
             <div className="text">
               <div className="genres">
-                <span className="genr">Action</span>
-                <span className="genr">Science-fi</span>
+                {details.genres? details.genres.map((genre,index)=>{
+                  return (
+                    <span className="genr" key={index}>{genre.name}</span>
+                  ) 
+                }):''}
               </div>
-              <p className="summary">
-                A thief who steals corporate secrets through the use of
-                dream-sharing technology is given the inverse task of planting
-                an idea into the mind of a C.E.O., but his tragic past may doom
-                the project and his team to disaster.
-              </p>
+              <p className="summary">{details.overview}</p>
               <div className="rates">
                 <div className="rate">
                   <span className="rate-text">IMDB rating</span>
                   <span className="rate-metrics">
-                    9.7/
+                    {details.vote_average.toFixed(2)}/
                     <span className="base-rate">10</span>
                   </span>
                 </div>
                 <div className="rate">
                   <span className="rate-text">Release Date</span>
-                  <span className="rate-metrics">2011-10-20
-                  </span>
+                  <span className="rate-metrics">{details.release_date}</span>
                 </div>
                 <div className="rate">
-                  <span className="rate-text">Release Date</span>
-                  <span className="rate-metrics">2011-10-20
-                  </span>
+                  <span className="rate-text">Original Language</span>
+                  <span className="rate-metrics">{details.original_language}</span>
                 </div>
                 <div className="rate">
                   <span className="rate-text">Status</span>
-                  <span className="rate-metrics">Released
-                  </span>
+                  <span className="rate-metrics">{details.status}</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="trailer">
-            <iframe
+            {trailer&&<iframe
               width="423px"
               height="319px"
-              src="https://www.youtube.com/embed/BmllggGO4pM"
+              src={trailer}
               title="Movie Trailer"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            ></iframe>
+            ></iframe>}
+            {trailerLoading&&<div className="loader"></div>}
           </div>
         </div>
         <h2 className="cast-h">Cast</h2>
@@ -151,6 +164,8 @@ function MovieDetails() {
             </div>
           </div>
         </div>
+        </>}
+        </>
       </section>
     </>
   );

@@ -330,12 +330,12 @@ nav h1 {
   font-weight: 700;
 }
 .cast {
-  width: 305px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0px 5px 20px 1px var(--dark-gray);
+  box-shadow: 0px 5px 20px 1px #d2691e;
 }
 .cast img {
   width: 100%;
