@@ -128,7 +128,7 @@ function MovieDetails() {
                   {trailerLoading && <div className="loader"></div>}
                 </div>
               </div>
-              <h2 className="cast-h">Cast</h2>
+              {casts&&<h2 className="cast-h">Cast</h2>}
               <div className="casts">
                 {casts &&
                   casts.map((cast, index) => {
