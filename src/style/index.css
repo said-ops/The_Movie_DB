@@ -382,9 +382,9 @@ nav h1 {
   }
 }
 @media screen and (max-width: 550px) {
-  .bookmark p {
+  /* .bookmark p {
     display: none;
-  }
+  } */
   .bookmark {
     margin-right: 0;
   }
