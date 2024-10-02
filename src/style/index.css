@@ -53,8 +53,12 @@ body {
 }
 .sign-container form h1 {
   align-self: center;
-  font-family: "pacifico";
-  font-size: 4rem;
+    font-family: "pacifico";
+    font-size: 4rem;
+    background: linear-gradient(89deg, #ffd700, #8b4513);
+    padding: 2rem;
+    background-clip: text;
+    color: transparent;
 }
 .sign-container form .inputs {
   gap: 0.7rem;
@@ -63,7 +67,7 @@ body {
   height: 2.5rem;
   border-radius: 1rem;
   padding-left: 1rem;
-  background-color: var(--light-gray);
+  background: linear-gradient(45deg, #ffd700, #8b4513);
   font-family: "pacifico";
   font-size: 1.2rem;
   border: 0;
@@ -135,13 +139,15 @@ nav h1 {
 @media screen and (max-width: 650px) {
   .nav-links {
     position: absolute;
-    right: 0;
-    top: 4rem;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    border-radius: 1rem;
-    z-index: 2;
+        right: 0;
+        top: 4rem;
+        flex-direction: column;
+        width: 65%;
+        height: 18rem;
+        text-align: center;
+        border-radius: 1rem;
+        z-index: 2;
+        justify-content: center;
   }
   .menu-icon {
     display: unset;
