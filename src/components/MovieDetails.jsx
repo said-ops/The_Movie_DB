@@ -3,7 +3,6 @@ import NavBar from "./NavBar";
 import useDetailsStore from "../store/movieDetailsStore";
 import { useParams } from "react-router-dom";
 import useWatchListSotre from "../store/watchlistStore";
-import Watchlist from "./Watchlist";
 
 function MovieDetails() {
   const laoding = useDetailsStore((state) => state.loading);
@@ -65,6 +64,7 @@ function MovieDetails() {
                   <p>{loading?'loading':'Bookmark'}</p>
                 </div>
                 :
+                //remove from whatch list
                 <div className="bookmark" onClick={()=>removeFromWatchlist(id)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -92,11 +92,6 @@ function MovieDetails() {
                     {laoding ? (
                       <div className="card skeleton-card">
                         <div className="skeleton-img"></div>
-                        <div className="card-body">
-                          <div className="skeleton-text title-ske"></div>
-                          <div className="skeleton-text desc-ske"></div>
-                          <div className="skeleton-text desc-ske"></div>
-                        </div>
                       </div>
                     ) : (
                       <img

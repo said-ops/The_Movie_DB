@@ -26,7 +26,7 @@ const useAuthStore = create((set, get) => ({
         password
       );
 
-      localStorage.setItem('user',JSON.stringify(userCredential.user));
+      // localStorage.setItem('user',JSON.stringify(userCredential.user));
       set({ user: userCredential.user, loading: false });
       
 
