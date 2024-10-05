@@ -5,7 +5,7 @@ import SignUp from "./SignUp";
 import HomePage from "./HomePage";
 import SearchPage from "./SearchPage";
 import Watchlist from "./Watchlist";
-import MovieDetails from './MovieDetails'
+import MovieDetails from "./MovieDetails";
 import ProtectedRoute from "../routes/ProtectedRoute";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <>
       <Router>
         <Routes>
-        <Route
+          <Route
             path="/"
             element={
               <ProtectedRoute>
@@ -33,7 +33,7 @@ function App() {
             path="/details/:id"
             element={
               <ProtectedRoute>
-                <MovieDetails/>
+                <MovieDetails />
               </ProtectedRoute>
             }
           />
@@ -47,6 +47,20 @@ function App() {
           />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          {/* <Route
+            path="*"
+            element={
+              <>
+                <div className="not-found">
+                  <img
+                    style={{ marginInline: "auto" }}
+                    src="/images/not-found-404.webp"
+                    alt=""
+                  />
+                </div>
+              </>
+            }
+          ></Route> */}
         </Routes>
       </Router>
     </>

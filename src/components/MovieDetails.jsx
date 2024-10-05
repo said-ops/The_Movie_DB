@@ -24,13 +24,12 @@ function MovieDetails() {
   const errorW = useWatchListSotre(state=>state.errorW)
   const isInWatchlist = useWatchListSotre(state=>state.isInWatchlist)
   const removeFromWatchlist = useWatchListSotre(state=>state.removeFromWatchlist)
-  const fetchWatchlist = useWatchListSotre(state=>state.fetchWatchlist)
 
   useEffect(() => {
     fetchDetails(id);
     fetchTrailer(id);
     fetchCasts(id);
-    fetchWatchlist()
+    // fetchWatchlist()
   }, [id]);
 
   

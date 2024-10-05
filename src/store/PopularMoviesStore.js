@@ -35,6 +35,8 @@ const usePopularStore = create((set) => ({
       return state;
     });
   },
+  theme:'dark',
+  setTheme:(text)=>set({theme:text})
 }));
 
 export default usePopularStore;
