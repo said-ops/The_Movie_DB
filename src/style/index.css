@@ -315,8 +315,9 @@ nav h1 {
   display: flex;
   justify-content: space-between;
   background: var(--bg-gradient);
-    border-radius: 1rem;
-    backdrop-filter: blur(1px);
+  border-radius: 1rem;
+  backdrop-filter: blur(1px);
+  /* padding: 0.5rem; */
 }
 .details {
   display: flex;
@@ -393,7 +394,7 @@ nav h1 {
   font-weight: 700;
 }
 .cast {
-  width: 200px;
+  width: 123px;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
@@ -409,7 +410,7 @@ nav h1 {
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.5rem;
-  font-size: 17px;
+  font-size: 12px;
   background: var(--bg-gradient);
 }
 @media screen and (max-width: 999px) {
@@ -621,7 +622,7 @@ nav h1 {
 }
 /*=======skeleton effect for cast card======*/
 .skeleton {
-  width: 200px;
+  width: 123px;
   height: 250px;
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
