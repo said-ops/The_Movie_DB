@@ -314,6 +314,9 @@ nav h1 {
 .infos {
   display: flex;
   justify-content: space-between;
+  background: var(--bg-gradient);
+    border-radius: 1rem;
+    backdrop-filter: blur(1px);
 }
 .details {
   display: flex;
@@ -407,7 +410,7 @@ nav h1 {
   gap: 0.5rem;
   padding: 0.5rem;
   font-size: 17px;
-  background: var(--card-bg-gradient);
+  background: var(--bg-gradient);
 }
 @media screen and (max-width: 999px) {
   .infos {

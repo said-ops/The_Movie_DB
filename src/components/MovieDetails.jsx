@@ -35,7 +35,13 @@ function MovieDetails() {
   
   return (
     <>
-      <section className="app-container">
+      <section className="app-container"  
+      style={details&&{backgroundImage:`url(https://image.tmdb.org/t/p/original/${details.backdrop_path})`,
+      backgroundRepeat:'no-repeat',
+      backgroundSize:'cover',
+      backgroundPosition:'center',
+      zIndex:'1'
+      }}>
         <NavBar />
         <>
           {details &&!error && !laoding&& (
@@ -84,7 +90,9 @@ function MovieDetails() {
                 </div>
                 }
               </div>
-              <div className="infos">
+              <div className="infos"
+              
+              >
                 <div className="details">
                   <div className="poster">
                     {/* display skeleton or the poster */}
@@ -164,7 +172,8 @@ function MovieDetails() {
                 </div>
               </div>
               <h2 className="cast-h">Cast</h2>
-              <div className="casts">
+              <div className="casts"
+              >
                 {/* display cast  */}
                 {!castsLoading && !castsError && casts.length > 0 &&
                   casts.map((cast, index) => {
