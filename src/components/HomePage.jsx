@@ -11,7 +11,6 @@ function HomePage() {
   const fetchPopular = usePopularStore((state) => state.fetchPopular);
   const currentPage = usePopularStore((state) => state.currentPage);
   const setPage = usePopularStore((state) => state.setPage);
-  
 
   useEffect(() => {
     fetchPopular(currentPage);
@@ -30,22 +29,25 @@ function HomePage() {
                   return (
                     <Link to={`/details/${parseInt(movie.id)}`} key={index}>
                       <div className="card" key={index}>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                        alt=""
-                      />
-                      <div className="card-body">
-                        <p className="movie-title">
-                          {movie.title.split(" ").slice(0, 3).join(" ") + "..."}
-                        </p>
-                        <p className="desc">
-                          <span className="duration">{movie.release_date}</span>
-                          <span className="genre">
-                            {movie.vote_average.toFixed(1)}
-                          </span>
-                        </p>
+                        <img
+                          src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                          alt=""
+                        />
+                        <div className="card-body">
+                          <p className="movie-title">
+                            {movie.title.split(" ").slice(0, 3).join(" ") +
+                              "..."}
+                          </p>
+                          <p className="desc">
+                            <span className="duration">
+                              {movie.release_date}
+                            </span>
+                            <span className="genre">
+                              {movie.vote_average.toFixed(1)}
+                            </span>
+                          </p>
+                        </div>
                       </div>
-                    </div>
                     </Link>
                   );
                 })}

@@ -56,7 +56,7 @@ function SearchPage() {
           )}
           <div className="cards">
             {/* initial image to display  */}
-            {!loading && !error && movies.length===0 &&!query&&(
+            {!loading && !error && movies.length === 0 && !query && (
               <div className="not-found">
                 <img src="/images/post-result.png" alt="look for a movie" />
               </div>
@@ -66,29 +66,30 @@ function SearchPage() {
               movies.map((movie, index) => {
                 return (
                   <Link key={index} to={`/details/${movie.id}`}>
-                    <div className="card" >
-                    <img
-                      src={
-                        movie.poster_path || movie.backdrop_path
-                          ? `https://image.tmdb.org/t/p/w300/${
-                              movie.poster_path || movie.backdrop_path
-                            }`
-                          : "https://placehold.jp/150x250.png"
-                      }
-                      alt=""
-                    />
-                    <div className="card-body">
-                      <p className="movie-title">
-                        {movie.title.split(" ").slice(0, 3).join(" ") + "..."}
-                      </p>
-                      <p className="desc">
-                        <span className="duration">{movie.release_date}</span>
-                        <span className="genre">
-                          {movie.vote_average && movie.vote_average.toFixed(1)}
-                        </span>
-                      </p>
+                    <div className="card">
+                      <img
+                        src={
+                          movie.poster_path || movie.backdrop_path
+                            ? `https://image.tmdb.org/t/p/w300/${
+                                movie.poster_path || movie.backdrop_path
+                              }`
+                            : "https://placehold.jp/150x250.png"
+                        }
+                        alt=""
+                      />
+                      <div className="card-body">
+                        <p className="movie-title">
+                          {movie.title.split(" ").slice(0, 3).join(" ") + "..."}
+                        </p>
+                        <p className="desc">
+                          <span className="duration">{movie.release_date}</span>
+                          <span className="genre">
+                            {movie.vote_average &&
+                              movie.vote_average.toFixed(1)}
+                          </span>
+                        </p>
+                      </div>
                     </div>
-                  </div>
                   </Link>
                 );
               })}
@@ -107,9 +108,14 @@ function SearchPage() {
                 );
               })}
             {/* error message handling */}
-            {error && <div className="not-found">
-              <img src="/images/somthing-wrong.webp" alt="Something went wrong" />
-              </div>}
+            {error && (
+              <div className="not-found">
+                <img
+                  src="/images/somthing-wrong.webp"
+                  alt="Something went wrong"
+                />
+              </div>
+            )}
             {/* no result is found */}
             {!loading && !error && movies.length === 0 && query && (
               <div className="not-found">

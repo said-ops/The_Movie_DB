@@ -51,7 +51,7 @@ function Watchlist() {
                   </Link>
                 );
               })}
-              {/* loader for cards */}
+            {/* loader for cards */}
             {loadingMovies && <div className="loader"></div>}
             {/* error image  */}
             {errorMovies && (

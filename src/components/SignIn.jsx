@@ -7,58 +7,53 @@ function SignIn() {
   const password = useAuthStore((state) => state.password);
   const setEmail = useAuthStore((state) => state.setEmail);
   const user = useAuthStore((state) => state.user);
-  const errorLogin  = useAuthStore((state) => state.errorLogin);
+  const errorLogin = useAuthStore((state) => state.errorLogin);
   const loading = useAuthStore((state) => state.loading);
   const setPassword = useAuthStore((state) => state.setPassword);
   const signIn = useAuthStore((state) => state.signIn);
   const userCheck = useAuthStore((state) => state.userCheck);
-  const [formErrors,setErrors]=useState('')
+  const [formErrors, setErrors] = useState("");
   const navigate = useNavigate();
 
-
-  useEffect(()=>{
+  useEffect(() => {
     userCheck();
-    if(user){
-      navigate('/')
+    if (user) {
+      navigate("/");
     }
-  },[user])
+  }, [user]);
 
-  
-  
   const handleSubmit = async (e) => {
-    const errors={}
-    let hasError =false
+    const errors = {};
+    let hasError = false;
     e.preventDefault();
 
-    if(!email){
-      errors.errorEmail='This field is required'
-      hasError=true
-    }else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      errors.errorEmail='Invalid Email Address'
-      hasError=true
+    if (!email) {
+      errors.errorEmail = "This field is required";
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errors.errorEmail = "Invalid Email Address";
+      hasError = true;
     }
-    if(!password){
-      errors.errorPass='This field is required'
-      hasError=true
-    }else if(password.length<8){
-      errors.errorPass='Password must be 8 characters or more'
-      hasError=true
+    if (!password) {
+      errors.errorPass = "This field is required";
+      hasError = true;
+    } else if (password.length < 8) {
+      errors.errorPass = "Password must be 8 characters or more";
+      hasError = true;
     }
-    setErrors(errors)
+    setErrors(errors);
     if (!hasError) {
       await signIn();
       const authError = await useAuthStore.getState().errorLogin;
-      if(!authError){
-        navigate('/')
-        setEmail(''),
-        setPassword('')
+      if (!authError) {
+        navigate("/");
+        setEmail(""), setPassword("");
       }
     }
   };
   return (
     <>
       <section className="sign-container">
-        
         <form action="#" onSubmit={(e) => handleSubmit(e)}>
           <h1>Sign In</h1>
           <div className="inputs">
@@ -71,7 +66,11 @@ function SignIn() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {formErrors.errorEmail?<span className="error">{formErrors.errorEmail}</span>:''}
+            {formErrors.errorEmail ? (
+              <span className="error">{formErrors.errorEmail}</span>
+            ) : (
+              ""
+            )}
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -81,16 +80,19 @@ function SignIn() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {formErrors.errorPass?<span className="error">{formErrors.errorPass}</span>:''}
-            
+            {formErrors.errorPass ? (
+              <span className="error">{formErrors.errorPass}</span>
+            ) : (
+              ""
+            )}
           </div>
-          {errorLogin?<span className="error">{errorLogin}</span>:''}
+          {errorLogin ? <span className="error">{errorLogin}</span> : ""}
 
-          {loading ?
+          {loading ? (
             <div className="loader"></div>
-            :
-            <button type="submit">Sign In</button>  
-        }
+          ) : (
+            <button type="submit">Sign In</button>
+          )}
           <span className="option">
             You don’t have an account? ,{" "}
             <Link to="/Sign-Up">

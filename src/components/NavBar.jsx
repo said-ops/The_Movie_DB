@@ -14,10 +14,10 @@ function NavBar() {
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
-  
-    
+
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   return (
@@ -36,9 +36,9 @@ function NavBar() {
           </Link>
           <li>
             <img
-              src={`/images/icon-${theme==='dark' ? "sun" : "moon"}.svg`}
+              src={`/images/icon-${theme === "dark" ? "sun" : "moon"}.svg`}
               alt=""
-              onClick={() =>  setTheme(theme === 'light' ? 'dark' : 'light')}
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             />
           </li>
           {user ? (
