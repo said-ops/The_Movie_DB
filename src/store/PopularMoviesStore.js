@@ -35,7 +35,7 @@ const usePopularStore = create((set) => ({
       return state;
     });
   },
-  theme:localStorage.getItem('theme')||'dark',
+  theme:localStorage.getItem('theme')||'light',
   setTheme:(text)=>set({theme:text})
 }));
 

@@ -16,24 +16,32 @@
   --cyan: #37c6f3;
 
   /*light theme*/
-  --bg-gradient: linear-gradient(45deg, #f8f9fa, #e0e6ed);
-  --card-bg-gradient: repeating-radial-gradient(
-    circle at center,
-    #ffffff,
-    #f0e6f6 70%
-  );
-  --card-hover-bg-gradient: repeating-radial-gradient(
-    circle at center,
-    #ffffff,
-    #d1c4e9 70%
-  );
-  --nav-bg-gradient: linear-gradient(91deg, #e0e6ed, #f8f9fa);
-  --main-text-color: #4a4a4a;
-  --accent-main: #6a0572;
-  --nav-links-bg: linear-gradient(91deg, #e0e6ed, #6a0572);
-  --search-input-bg: radial-gradient(circle at top, #fafafa, #c3aed6);
-  --search-btn-bg: radial-gradient(circle at top, #fafafa, #9b6fa8);
-  --search-btn-hover-bg: radial-gradient(circle at top, #fafafa, #6a0572);
+--bg-gradient: radial-gradient(
+  circle at center,
+  #f0f4ff,
+  #d4e1ff 50%,
+  #b9cdff 100%
+);
+--card-bg-gradient: repeating-radial-gradient(
+  circle at center,
+  #ffffff,
+  #e1f0ff 30%,
+  transparent 60%
+);
+--card-hover-bg-gradient: repeating-radial-gradient(
+  circle at center,
+  #ffffff,
+  #b3d4ff 40%,
+  transparent 70%
+);
+--nav-bg-gradient: linear-gradient(91deg, #d4e1ff, #f0f4ff);
+--main-text-color: #1f1f1f;
+--accent-main: #4a90e2;
+--nav-links-bg: linear-gradient(91deg, #d4e1ff, #4a90e2);
+--search-input-bg: radial-gradient(circle at top, #e8f0ff, #4a90e2);
+--search-btn-bg: radial-gradient(circle at top, #e8f0ff, #6eafff);
+--search-btn-hover-bg: radial-gradient(circle at top, #e8f0ff, #91bfff);
+
 }
 [data-theme="dark"] {
   --bg-gradient: radial-gradient(
@@ -525,14 +533,14 @@ nav h1 {
 .next-btn,
 .pag-btn {
   padding: 0.5rem;
-  background: var(--bg-gradient);
+  background: var(--accent-main);
   border: 0;
   font-family: "pacifico";
 }
 .prev-btn:hover,
 .next-btn:hover,
 .pag-btn:hover {
-  color: var(--accent-main);
+  color: var(--main-text-color);
   cursor: pointer;
 }
 .pag-active {
