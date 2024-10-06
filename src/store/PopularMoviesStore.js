@@ -1,7 +1,8 @@
 import { create } from "zustand";
 
 const apiKey = import.meta.env.VITE_API_KEY_AUTH;
-const popularUrl = `https://api.themoviedb.org/3/movie/popular?&include_adult=false`;
+const popularUrl = `https://api.themoviedb.org/3/movie/top_rated?&include_adult=false&sort_by=vote_average.desc`;
+
 
 const usePopularStore = create((set) => ({
   movies: [],

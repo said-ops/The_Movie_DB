@@ -21,7 +21,7 @@ function HomePage() {
         <section className="app-container">
           <NavBar />
           <div className="home-container">
-            <h1>Popular Movies</h1>
+            <h1>Top-100 Movies of All Time</h1>
             <div className="cards">
               {/* movies cards goes here */}
               {movies.length > 0 &&
