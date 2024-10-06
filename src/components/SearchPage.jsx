@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import Pagination from "./Pagination";
 import useSearchStore from "../store/searchStore";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 function SearchPage() {
   const movies = useSearchStore((state) => state.movies);
@@ -23,6 +24,16 @@ function SearchPage() {
       fetchByTerm(searchTerm, currentPage);
     }
   };
+   // Variants for input animation
+   const inputVariants = {
+    normal: { width: "300px" },
+    focused: { width: "310px" },
+  };
+  //card variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
   return (
     <>
       <section className="app-container">
@@ -32,12 +43,20 @@ function SearchPage() {
           <div className="search-container">
             <div className="search">
               <label htmlFor="search">Search</label>
-              <input
+              <motion.input
                 type="text"
                 name="search"
                 id="search"
                 value={searchTerm}
                 onChange={(e) => setTerm(e.target.value)}
+                // Add variants and event handlers for animation
+                variants={inputVariants}
+                initial="normal"
+                animate={searchTerm ? "focused" : "normal"}
+                transition={{ type: "spring", stiffness: 300 }}
+                onFocus={(e) => {
+                  e.target.value = searchTerm; // Maintain the value on focus
+                }}
               />
               <button type="submit" className="search-btn">
                 Search
@@ -66,30 +85,34 @@ function SearchPage() {
               movies.map((movie, index) => {
                 return (
                   <Link key={index} to={`/details/${movie.id}`}>
-                    <div className="card">
+                    <motion.div
+                      className="card"
+                      key={index}
+                      initial="hidden"
+                      animate="visible"
+                      variants={cardVariants}
+                      whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(0,0,0,0.3)" }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      
+                    >
                       <img
-                        src={
-                          movie.poster_path || movie.backdrop_path
-                            ? `https://image.tmdb.org/t/p/w300/${
-                                movie.poster_path || movie.backdrop_path
-                              }`
-                            : "https://placehold.jp/150x250.png"
-                        }
-                        alt=""
+                        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                        alt={movie.title}
                       />
                       <div className="card-body">
                         <p className="movie-title">
                           {movie.title.split(" ").slice(0, 3).join(" ") + "..."}
                         </p>
                         <p className="desc">
-                          <span className="duration">{movie.release_date}</span>
+                          <span className="duration">
+                            {movie.release_date}
+                          </span>
                           <span className="genre">
-                            {movie.vote_average &&
-                              movie.vote_average.toFixed(1)}
+                            {movie.vote_average.toFixed(1)}
                           </span>
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   </Link>
                 );
               })}

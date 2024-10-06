@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"; // Import Framer Motion
 import useAuthStore from "../store/authStore";
 import usePopularStore from "../store/PopularMoviesStore";
 
@@ -9,7 +10,7 @@ function NavBar() {
   const setTheme = usePopularStore((state) => state.setTheme);
   const theme = usePopularStore((state) => state.theme);
 
-  //handle menu
+  // Handle menu
   const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -34,28 +35,30 @@ function NavBar() {
           <Link to="/Watchlist">
             <li>Watchlist</li>
           </Link>
-          <li>
+          <motion.li
+            animate={{ rotate: theme === "dark" ? 90 : 0 }} // Rotation animation
+            transition={{ type: "spring", stiffness: 300 }} // Smooth spring animation
+          >
             <img
               src={`/images/icon-${theme === "dark" ? "sun" : "moon"}.svg`}
-              alt=""
+              alt="Theme Toggle"
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             />
-          </li>
-          {user ? (
-            <li onClick={signOut}>Sign Out</li>
-          ) : (
-            // <Link to="/sign-in">
-            //   <li>Sign</li>
-            // </Link>
-            ""
-          )}
+          </motion.li>
+          {user && <li onClick={signOut}>Sign Out</li>}
         </ul>
-        <div className="menu-icon" onClick={handleClick}>
+        {/* Menu icon with animation */}
+        <motion.div
+          className="menu-icon"
+          onClick={handleClick}
+          animate={{ rotate: isOpen ? 90 : 0 }} // Rotation animation
+          transition={{ type: "spring", stiffness: 300 }} // Smooth spring animation
+        >
           <img
             src={`/images/${isOpen ? "icon-close" : "icon-hamburger"}.svg`}
             alt="menu"
           />
-        </div>
+        </motion.div>
       </nav>
     </>
   );

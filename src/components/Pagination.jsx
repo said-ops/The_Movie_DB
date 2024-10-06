@@ -5,7 +5,9 @@ function Pagination({ setPage, currentPage }) {
     <div className="pagination">
       <button
         className="prev-btn"
-        onClick={() => setPage(currentPage - 1)}
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          setPage(currentPage - 1)}}
         disabled={currentPage === 1}
       >
         Previous
@@ -17,7 +19,9 @@ function Pagination({ setPage, currentPage }) {
             className={`pag-btn ${
               currentPage === index + 1 ? "pag-active" : ""
             }`}
-            onClick={() => setPage(index + 1)}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              setPage(index + 1)}}
           >
             {index + 1}
           </button>
@@ -25,7 +29,9 @@ function Pagination({ setPage, currentPage }) {
       })}
       <button
         className="next-btn"
-        onClick={() => setPage(currentPage + 1)}
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          setPage(currentPage + 1)}}
         disabled={currentPage === 5}
       >
         Next
