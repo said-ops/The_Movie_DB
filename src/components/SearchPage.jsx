@@ -24,16 +24,20 @@ function SearchPage() {
   const genre = useSearchStore((state) => state.genre);
   const setGenre = useSearchStore((state) => state.setGenre);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (searchTerm) {
       setQuery(searchTerm);
-      fetchByTerm(searchTerm, currentPage);
+     await fetchByTerm(searchTerm, 1);
+     setTerm('');
+     setGenre('')
+     setSortBy('')
     }
   };
   useEffect(() => {
-    if (!query) {
-      fetchByTerm("", currentPage);
+    if (!searchTerm&&genre||sortBy) {
+      fetchByTerm("", 1);
+      setQuery('');
     }
   }, [genre, sortBy]);
   // Variants for input animation
