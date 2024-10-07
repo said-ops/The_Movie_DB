@@ -62,6 +62,7 @@ function Watchlist() {
                 />
               </div>
             )}
+            {!loadingMovies && !errorMovies && movies.length===0&& (<div>Nothing to display</div>) }
           </div>
         </div>
       </section>
