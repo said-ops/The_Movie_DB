@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import Pagination from "./Pagination";
 import useSearchStore from "../store/searchStore";
@@ -15,11 +15,14 @@ function SearchPage() {
   const setTerm = useSearchStore((state) => state.setTerm);
   const loading = useSearchStore((state) => state.loading);
   const error = useSearchStore((state) => state.error);
-  const [query, setQuery] = useState("");
+  const query = useSearchStore((state) => state.query);
+  const setQuery = useSearchStore((state) => state.setQuery);
 
   //filter params
-  const [genre,setGenre] =useState('')
-  const [sortBy,setSortBy] =useState('')
+  const sortBy = useSearchStore((state) => state.sortBy);
+  const setSortBy = useSearchStore((state) => state.setSortBy);
+  const genre = useSearchStore((state) => state.genre);
+  const setGenre = useSearchStore((state) => state.setGenre);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +31,11 @@ function SearchPage() {
       fetchByTerm(searchTerm, currentPage);
     }
   };
+  useEffect(() => {
+    if (!query) {
+      fetchByTerm("", currentPage);
+    }
+  }, [genre, sortBy]);
   // Variants for input animation
   const inputVariants = {
     normal: { width: "300px" },
@@ -78,7 +86,7 @@ function SearchPage() {
                 </div>
                 {/* filtring by genre */}
                 <div className="filter">
-                  <label htmlFor="genre">Genre:</label>
+                  <label htmlFor="genre">Filter By:</label>
                   <select
                     id="genre"
                     value={genre}
@@ -131,7 +139,13 @@ function SearchPage() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
                       <img
-                        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                        src={
+                          movie.poster_path || movie.backdrop_path
+                            ? `https://image.tmdb.org/t/p/w300/${
+                                movie.poster_path || movie.backdrop_path
+                              }`
+                            : "https://placehold.jp/150x250.png"
+                        }
                         alt={movie.title}
                       />
                       <div className="card-body">
