@@ -33,6 +33,7 @@ function SearchPage() {
      await fetchByTerm(searchTerm, 1);
      setSortBy('')
      setGenre('')
+     setPage(1)
     }
   };
 
@@ -43,6 +44,8 @@ function SearchPage() {
       setQuery('');
       setSortBy('')
       setTerm('')
+      setPage(1)
+      
     }
   }, [genre]);
 
@@ -51,6 +54,7 @@ function SearchPage() {
     if (sortBy) {
       sortMovies();
       setGenre('')
+      setPage(1)
     }
   }, [sortBy]);
 
