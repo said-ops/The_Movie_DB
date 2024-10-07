@@ -23,33 +23,49 @@ function SearchPage() {
   const setSortBy = useSearchStore((state) => state.setSortBy);
   const genre = useSearchStore((state) => state.genre);
   const setGenre = useSearchStore((state) => state.setGenre);
+  const sortMovies = useSearchStore((state) => state.sortMovies);
 
+  //search a movie by name
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (searchTerm) {
       setQuery(searchTerm);
      await fetchByTerm(searchTerm, 1);
-     setTerm('');
-     setGenre('')
      setSortBy('')
+     setGenre('')
     }
   };
+
+  //fetch movies based on genre
   useEffect(() => {
-    if (!searchTerm&&genre||sortBy) {
+    if (genre) {
       fetchByTerm("", 1);
       setQuery('');
+      setSortBy('')
+      setTerm('')
     }
-  }, [genre, sortBy]);
+  }, [genre]);
+
+  //sort results based on year or rate
+  useEffect(() => {
+    if (sortBy) {
+      sortMovies();
+      setGenre('')
+    }
+  }, [sortBy]);
+
   // Variants for input animation
   const inputVariants = {
     normal: { width: "300px" },
     focused: { width: "310px" },
   };
+
   //card variants
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
   };
+
   return (
     <>
       <section className="app-container">
