@@ -159,7 +159,7 @@ function SearchPage() {
                         <p className="desc">
                           <span className="duration">{movie.release_date}</span>
                           <span className="genre">
-                            {movie.vote_average.toFixed(1)}
+                            {movie.vote_average?movie.vote_average.toFixed(1):0}
                           </span>
                         </p>
                       </div>
