@@ -17,6 +17,10 @@ function SearchPage() {
   const error = useSearchStore((state) => state.error);
   const [query, setQuery] = useState("");
 
+  //filter params
+  const [genre,setGenre] =useState('')
+  const [sortBy,setSortBy] =useState('')
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchTerm) {
@@ -24,8 +28,8 @@ function SearchPage() {
       fetchByTerm(searchTerm, currentPage);
     }
   };
-   // Variants for input animation
-   const inputVariants = {
+  // Variants for input animation
+  const inputVariants = {
     normal: { width: "300px" },
     focused: { width: "310px" },
   };
@@ -58,6 +62,35 @@ function SearchPage() {
                   e.target.value = searchTerm; // Maintain the value on focus
                 }}
               />
+              {/* Sorting by Rating or Year */}
+              <div className="filter-container">
+                <div className="filter">
+                  <label htmlFor="sort">Sort By:</label>
+                  <select
+                    id="sort"
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="year">Year</option>
+                    <option value="rating">Rating</option>
+                  </select>
+                </div>
+                {/* filtring by genre */}
+                <div className="filter">
+                  <label htmlFor="genre">Genre:</label>
+                  <select
+                    id="genre"
+                    value={genre}
+                    onChange={(e) => setGenre(e.target.value)}
+                  >
+                    <option value="">All Genres</option>
+                    <option value="28">Action</option>
+                    <option value="878">Science Fiction</option>
+                    <option value="18">Drama</option>
+                  </select>
+                </div>
+              </div>
               <button type="submit" className="search-btn">
                 Search
               </button>
@@ -91,9 +124,11 @@ function SearchPage() {
                       initial="hidden"
                       animate="visible"
                       variants={cardVariants}
-                      whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(0,0,0,0.3)" }}
+                      whileHover={{
+                        scale: 1.05,
+                        boxShadow: "0px 4px 15px rgba(0,0,0,0.3)",
+                      }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      
                     >
                       <img
                         src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
@@ -104,9 +139,7 @@ function SearchPage() {
                           {movie.title.split(" ").slice(0, 3).join(" ") + "..."}
                         </p>
                         <p className="desc">
-                          <span className="duration">
-                            {movie.release_date}
-                          </span>
+                          <span className="duration">{movie.release_date}</span>
                           <span className="genre">
                             {movie.vote_average.toFixed(1)}
                           </span>

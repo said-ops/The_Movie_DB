@@ -59,7 +59,7 @@ const useAuthStore = create((set, get) => ({
   //function to sign out
   signOut: async () => {
     await auth.signOut();
-    localStorage.removeItem('user')
+    // localStorage.removeItem('user')
     set({ user: null, email: "", password: "" });
   },
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 
@@ -14,6 +14,15 @@ function SignUp() {
   const signUp = useAuthStore((state) => state.signUp);
   const [formErrors, setErrors] = useState("");
   const navigate = useNavigate();
+  const user = useAuthStore((state) => state.user);
+  const userCheck = useAuthStore((state) => state.userCheck);
+
+  useEffect(() => {
+    userCheck();
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   const handleSubmit = async (e) => {
     const errors = {};
