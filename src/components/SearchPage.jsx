@@ -30,10 +30,10 @@ function SearchPage() {
     e.preventDefault();
     if (searchTerm) {
       setQuery(searchTerm);
-     await fetchByTerm(searchTerm, 1);
-     setSortBy('')
-     setGenre('')
-     setPage(1)
+      await fetchByTerm(searchTerm, 1);
+      setSortBy("");
+      setGenre("");
+      setPage(1);
     }
   };
 
@@ -41,11 +41,10 @@ function SearchPage() {
   useEffect(() => {
     if (genre) {
       fetchByTerm("", 1);
-      setQuery('');
-      setSortBy('')
-      setTerm('')
-      setPage(1)
-      
+      setQuery("");
+      setSortBy("");
+      setTerm("");
+      setPage(1);
     }
   }, [genre]);
 
@@ -53,8 +52,7 @@ function SearchPage() {
   useEffect(() => {
     if (sortBy) {
       sortMovies();
-      setGenre('')
-      setPage(1)
+      setPage(1);
     }
   }, [sortBy]);
 
@@ -118,8 +116,24 @@ function SearchPage() {
                   >
                     <option value="">All Genres</option>
                     <option value="28">Action</option>
-                    <option value="878">Science Fiction</option>
+                    <option value="12">Adventure</option>
+                    <option value="16">Animation</option>
+                    <option value="35">Comedy</option>
+                    <option value="80">Crime</option>
+                    <option value="99">Documentary</option>
                     <option value="18">Drama</option>
+                    <option value="10751">Family</option>
+                    <option value="14">Fantasy</option>
+                    <option value="36">History</option>
+                    <option value="27">Horror</option>
+                    <option value="10402">Music</option>
+                    <option value="9648">Mystery</option>
+                    <option value="10749">Romance</option>
+                    <option value="878">Science Fiction</option>
+                    <option value="10770">TV Movie</option>
+                    <option value="53">Thriller</option>
+                    <option value="10752">War</option>
+                    <option value="37">Western</option>
                   </select>
                 </div>
               </div>
@@ -179,7 +193,9 @@ function SearchPage() {
                         <p className="desc">
                           <span className="duration">{movie.release_date}</span>
                           <span className="genre">
-                            {movie.vote_average?movie.vote_average.toFixed(1):0}
+                            {movie.vote_average
+                              ? movie.vote_average.toFixed(1)
+                              : 0}
                           </span>
                         </p>
                       </div>
