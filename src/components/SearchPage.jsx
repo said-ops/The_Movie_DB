@@ -52,7 +52,7 @@ function SearchPage() {
   useEffect(() => {
     if (sortBy) {
       sortMovies();
-      setPage(1);
+      // setPage(1);
     }
   }, [sortBy]);
 
