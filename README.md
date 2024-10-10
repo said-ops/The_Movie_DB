@@ -48,7 +48,7 @@ To run this project locally, follow these steps:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/yourusername/movie-database-app.git
+   git clone https://github.com/said-ops/the_movie_db.git
    cd movie-database-app
 2. Install dependencies::
 
